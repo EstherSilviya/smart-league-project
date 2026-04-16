@@ -2,11 +2,14 @@ import { useState } from "react";
 import { auth, db } from "../firebase/config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
-export default function Register() {
+export default function ManagementRegister() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     collegeName: "",
-    staffName: "",
+    headName: "",
     email: "",
     password: "",
   });
@@ -27,17 +30,20 @@ export default function Register() {
 
       const user = userCred.user;
 
-      await setDoc(doc(db, "editors", user.uid), {
+      // 🔥 SAVE MANAGEMENT DATA
+      await setDoc(doc(db, "management", user.uid), {
         uid: user.uid,
         collegeName: form.collegeName,
-        staffName: form.staffName,
+        headName: form.headName,
         email: form.email,
-        role: "editor",
+        role: "management",
         status: "pending",
         createdAt: new Date(),
       });
 
-      alert("Registered Successfully!");
+      alert("College Registered Successfully! Waiting for Admin Approval.");
+      navigate("/login");
+
     } catch (err) {
       alert(err.message);
     }
@@ -48,7 +54,7 @@ export default function Register() {
       <div className="auth-card">
 
         <h2 className="auth-title">Smart League</h2>
-        <p className="auth-subtitle">Editor Registration</p>
+        <p className="auth-subtitle">College Registration</p>
 
         <form onSubmit={handleSubmit}>
 
@@ -61,8 +67,8 @@ export default function Register() {
           />
 
           <input
-            name="staffName"
-            placeholder="Staff Name"
+            name="headName"
+            placeholder="Head / Coordinator Name"
             onChange={handleChange}
             className="auth-input"
             required
@@ -86,14 +92,14 @@ export default function Register() {
             required
           />
 
-          <button className="auth-btn">Register</button>
+          <button className="auth-btn">Register College</button>
         </form>
 
         <p className="auth-switch">
-          Already have an account?{" "}
+          Already registered?{" "}
           <span
             className="auth-link"
-            onClick={() => window.location.href = "/login"}
+            onClick={() => navigate("/login")}
           >
             Login
           </span>

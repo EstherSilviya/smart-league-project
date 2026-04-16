@@ -1,0 +1,107 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* LAYOUT */
+.layout {
+  display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: #0f172a;
+  color: white;
+  padding: 20px;
+  position: fixed; /* 🔥 FIX */
+  left: 0;
+  top: 0;
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sidebar li:hover {
+  background: #1e293b;
+}
+
+.sidebar .active {
+  background: #2563eb;
+}
+
+/* MAIN CONTENT */
+.content {
+  margin-left: 240px; /* 🔥 IMPORTANT FIX */
+  padding: 40px;
+  width: 100%;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.header p {
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* FORM */
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.form input:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+/* BUTTON */
+.form button {
+  padding: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background: #1d4ed8;
+}
